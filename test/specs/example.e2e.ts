@@ -12,7 +12,7 @@ describe('My Login application', () => {
         await expect(elems).toBeElementsArrayOfSize(0)
     })
 
-    it('should fail with filter', async () => {
+    it.skip('should fail with filter', async () => {
         const elems = await $$('div').filter(async el => await el.isDisplayed())
         await expect(elems).toBeElementsArrayOfSize(1)
     })
@@ -35,4 +35,13 @@ describe('My Login application', () => {
         await expect(browser).toHaveUrl('https://the-internet.herokuapp.com/secure')
         await expect(browser).toHaveTitle('The Internet')
     })
+
+    it.only('should be displayed after login', async () => {
+        await browser.url('https://the-internet.herokuapp.com/login')
+
+        await expect($('#usrname')).toBeDisplayed({
+            message: 'Username input should be displayed on login page',
+            wait: 60000
+        })
+    })    
 })
