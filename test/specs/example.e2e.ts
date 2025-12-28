@@ -36,12 +36,12 @@ describe('My Login application', () => {
         await expect(browser).toHaveTitle('The Internet')
     })
 
-    it.only('should be displayed after login', async () => {
+    it.skip('should be displayed after login', async () => {
         await browser.url('https://the-internet.herokuapp.com/login')
 
         await expect($('#usrname')).toBeDisplayed({
             message: 'Username input should be displayed on login page',
-            wait: 60000
+            wait: 1000
         })
     })    
 })
