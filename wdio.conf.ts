@@ -1,5 +1,5 @@
 
-export const config: WebdriverIO.Config = {
+export const config: WebdriverIO.MultiremoteConfig = {
     //
     // ====================
     // Runner Configuration
@@ -12,7 +12,7 @@ export const config: WebdriverIO.Config = {
     // ==================
     //
     specs: [
-        './test/specs/**/*.test.ts'
+        './test/specs/**/*.e2e.test.ts'
     ],
     //
     // ============
@@ -20,12 +20,24 @@ export const config: WebdriverIO.Config = {
     // ============
     //
     maxInstances: 10,
-    capabilities: [{
-        browserName: 'chrome',
-        'goog:chromeOptions': {
-            args: ['--headless', '--disable-gpu']
-        }   
-    }],
+    capabilities: {
+        myChromeBrowser: {
+            capabilities: {
+                browserName: 'chrome',
+                'goog:chromeOptions': {
+                    args: ['--headless', '--disable-gpu']
+                }
+            }
+        },
+        // myFirefoxBrowser: {
+        //     capabilities: {
+        //         browserName: 'firefox',
+        //         'moz:firefoxOptions': {
+        //             args: ['-headless']
+        //         }
+        //     }
+        // } 
+    },
     //
     // ===================
     // Test Configurations
