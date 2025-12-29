@@ -18,6 +18,15 @@ describe('My Login application', () => {
     })
 
 
+    it('should be displayed', async () => {
+        await browser.url('https://the-internet.herokuapp.com/login')
+
+        await expect($('#username')).toBeDisplayed({
+            message: 'Username input should be displayed on login page',
+            wait: 1000
+        })
+    })   
+
     it('should login with valid credentials', async () => {
         await browser.url('https://the-internet.herokuapp.com/login')
 
@@ -36,12 +45,5 @@ describe('My Login application', () => {
         await expect(browser).toHaveTitle('The Internet')
     })
 
-    it.skip('should be displayed after login', async () => {
-        await browser.url('https://the-internet.herokuapp.com/login')
-
-        await expect($('#usrname')).toBeDisplayed({
-            message: 'Username input should be displayed on login page',
-            wait: 1000
-        })
-    })    
+ 
 })

@@ -1,19 +1,11 @@
-import type { Options } from '@wdio/types'
 
-export const config: Options.Testrunner = {
+export const config: WebdriverIO.Config = {
     //
     // ====================
     // Runner Configuration
     // ====================
     //
     runner: 'local',
-    autoCompileOpts: {
-        autoCompile: true,
-        tsNodeOpts: {
-            transpileOnly: true,
-            project: 'tsconfig.json'
-        }
-    },
     //
     // ==================
     // Specify Test Files
@@ -32,7 +24,7 @@ export const config: Options.Testrunner = {
         browserName: 'chrome',
         'goog:chromeOptions': {
             args: ['--headless', '--disable-gpu']
-        }
+        }   
     }],
     //
     // ===================
