@@ -29,14 +29,14 @@ export const config: WebdriverIO.MultiremoteConfig = {
                 }
             }
         },
-        // myFirefoxBrowser: {
-        //     capabilities: {
-        //         browserName: 'firefox',
-        //         'moz:firefoxOptions': {
-        //             //  args: ['-headless']
-        //         }
-        //     }
-        // } 
+        myFirefoxBrowser: {
+            capabilities: {
+                browserName: 'firefox',
+                'moz:firefoxOptions': {
+                    //  args: ['-headless']
+                }
+            }
+        } 
     },
     //
     // ===================

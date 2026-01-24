@@ -144,7 +144,7 @@ describe('My Login application', () => {
         const elements: WebdriverIO.MultiRemoteElement[] = multiremotebrowser.$$('#username')
     })
 
-    it.only('should have element & elements work with toBeEnabled', async () => {
+    it('should have element & elements work with toBeEnabled', async () => {
         await multiremotebrowser.myChromeBrowser.url('https://the-internet.herokuapp.com/login')
 
         const nonAwaitedElement: ChainablePromiseElement = multiremotebrowser.myChromeBrowser.$('#username')
@@ -156,5 +156,18 @@ describe('My Login application', () => {
         console.log('--- Awaited Element ---');
         console.log(awaitedElement);
         console.log(`'getElement' in awaitedElement`, 'getElement' in awaitedElement);
+    })
+
+
+    describe('closeWindow', () => {
+        it.only('should take screenshot of element after scrolling into view', async () => {
+            await multiremotebrowser.url('https://the-internet.herokuapp.com/login')
+            await expect(multiremotebrowser.myFirefoxBrowser).toHaveTitle('The Internet')   
+            await expect(multiremotebrowser.myChromeBrowser).toHaveTitle('The Internet')               
+
+            const handles = await multiremotebrowser.myChromeBrowser.closeWindow()
+            console.log('Handles after closeWindow:', handles);
+            await expect(multiremotebrowser.myFirefoxBrowser).toHaveTitle('The Internet')
+        })
     })    
 })
