@@ -1,4 +1,4 @@
-import { browser, $, $$, expect } from '@wdio/globals'
+import { browser, expect } from '@wdio/globals'
 import path from "node:path";
 
 describe('My Login application', () => {

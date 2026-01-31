@@ -4,7 +4,7 @@ import  { expect as expectWDIO } from 'expect-webdriverio'
 
 describe('My Login application', () => {
     it('should demonstrate toBeElementsArrayOfSize', async () => {
-        browser.url('https://the-internet.herokuapp.com/login')
+        await browser.url('https://the-internet.herokuapp.com/login')
         const elems = $$('input')
         await expect(elems).toBeElementsArrayOfSize(2)
     })

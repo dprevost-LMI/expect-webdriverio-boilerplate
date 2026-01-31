@@ -9,8 +9,4 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "include": [
-    "test/**/*.ts",
-    "wdio.conf.ts"
-  ]
 }

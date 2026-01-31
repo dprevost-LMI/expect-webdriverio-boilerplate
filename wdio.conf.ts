@@ -54,7 +54,6 @@ export const config: WebdriverIO.Config = {
     // Hooks
     // =====
     //
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     before: function (_capabilities, _specs) {
         // require('expect-webdriverio') // Not needed if using types in tsconfig and auto-import, but good to be safe or if using JS.
         // Actually, with the latest expect-webdriverio, it is often auto-imported or we import it in the test.
