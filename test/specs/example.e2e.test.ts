@@ -1,6 +1,6 @@
 import { browser, $, $$, expect } from '@wdio/globals'
 import { ChainablePromiseArray } from 'webdriverio'
-import  { expect as expectWDIO } from 'expect-webdriverio'
+// import  { expect as expectWDIO } from 'expect-webdriverio'
 
 describe('My Login application', () => {
     it('should demonstrate toBeElementsArrayOfSize', async () => {

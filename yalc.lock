@@ -3,7 +3,7 @@
   "packages": {
     "eslint-plugin-wdio": {
       "version": "9.23.0",
-      "signature": "e2bf94c7a7ba1dd813de6ecad0f30846",
+      "signature": "03cf8d222e1d18a48572b336ab1fbbc1",
       "file": true,
       "replaced": "^9.23.0"
     }
