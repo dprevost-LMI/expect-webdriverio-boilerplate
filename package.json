@@ -25,9 +25,6 @@
     "eslint-plugin-wdio": "file:.yalc/eslint-plugin-wdio",
     "expect-webdriverio": "5.6.4",
     "globals": "^17.2.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.54.0",
     "webdriverio": "^9.23.2"
   },
   "overrides": {
