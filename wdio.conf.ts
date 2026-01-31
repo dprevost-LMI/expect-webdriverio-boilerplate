@@ -1,4 +1,6 @@
 
+import { SoftAssertionService } from 'expect-webdriverio'
+
 export const config: WebdriverIO.Config = {
     //
     // ====================
@@ -12,7 +14,8 @@ export const config: WebdriverIO.Config = {
     // ==================
     //
     specs: [
-        './test/specs/**/example.e2e.test.ts'
+        // './test/specs/**/example.e2e.test.ts',
+        './test/specs/**/not-issues.test.ts'
     ],
     //
     // ============
@@ -37,7 +40,9 @@ export const config: WebdriverIO.Config = {
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
-    services: [],
+    services: [
+        [SoftAssertionService, {}]
+    ],
     framework: 'mocha',
     reporters: ['spec'],
     mochaOpts: {

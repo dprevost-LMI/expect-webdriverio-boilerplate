@@ -1,5 +1,6 @@
 import { browser, $, $$, expect } from '@wdio/globals'
 import { ChainablePromiseArray } from 'webdriverio'
+import  { expect as expectWDIO } from 'expect-webdriverio'
 
 describe('My Login application', () => {
     it('should demonstrate toBeElementsArrayOfSize', async () => {
@@ -182,11 +183,11 @@ describe('My Login application', () => {
         //await expect(awaitedChaineableArray).not.toBeElementsArrayOfSize(12);
         await expect(elementArray).not.toBeElementsArrayOfSize(12);
         
-        await expect(elements).toBeElementsArrayOfSize(12);
-        await expect(elements).not.toBeElementsArrayOfSize(12);
+        // await expect(elements).toBeElementsArrayOfSize(12);
+        // await expect(elements).not.toBeElementsArrayOfSize(12);
     })
 
-    it.skip('toHaveText', async () => {
+    it('toHaveText', async () => {
         await browser.url('https://the-internet.herokuapp.com/login')
 
         // console.log('PageSource', await browser.getPageSource());
@@ -260,17 +261,33 @@ describe('My Login application', () => {
         // const singleText = await $('label').getText()
         // expect(singleText).toEqual(expect.stringMatching(expect.arrayContaining(['Username', 'Password'])));
         
-        const texts = await $$('label').map( async (el) => el.getText())
+        // const texts = await $$('label').map( async (el) => el.getText())
         // expect(text).toEqual(expect.arrayContaining(['Username', 'Password']));
 
         // await expect(await $$('label')).not.toHaveText(['Username', 'Password']);
         // await expect(await $('label')).not.toHaveText(['Username', 'Password']);
         // await expect(await $('label')).toHaveText('Username1');
-        await expect(await $('label')).toHaveHTML('Username1');
+        // await expect(await $('label')).toHaveHTML('Username1');
         // expect(texts).not.toEqual(['Username', 'Password']);
 
-        // expect('Username').not.toEqual('Username');
+        // expect(
+        // 'Username').not.toEqual('Username');
 
+        // const softService = SoftAssertService.getInstance()
+        // softService.setCurrentTest('test-1', 'test name', 'test file')
+
+
+        // const labels = $$('label')[3];
+        // console.log('expect($$()', expect($$('label')) );
+        // console.log('expect($$()', expectWDIO.soft($$('label')) );
+        // console.log('expect($$() instanceof Promise', expectWDIO($$('label')) instanceof Promise);
+        // console.log('expect($$().toHaveText', expectWDIO($$('label')).toHaveText );
+        // await expect($$('label')[3]).toHaveText('Username1');
+
+        console.log('expect(Promise', expect(Promise.resolve('test')) );
+        console.log('expect(Promise.toEqual', expect(Promise.resolve('test')).toEqual );
+        console.log('expect(Promise.toEqual.resolves', expect(Promise.resolve('test')).resolves );
+        await expect(Promise.resolve('test')).toEqual('test1');
     })
 
     describe('Element at index of `$$`', function () {
@@ -278,8 +295,8 @@ describe('My Login application', () => {
             { expectedText: 'two', index: 2 },
             { expectedText: 'four', index: 4 },
         ].forEach(function ( { expectedText, index } ) {
-            it("Element at $index of `$$('label')` is $expectedText", function () {
-                expect($$('label')[index]).toHaveText(expectedText);
+            it("Element at $index of `$$('label')` is $expectedText", async function () {
+                await expect($$('label')[index]).toHaveText(expectedText);
             });
         });
     });
@@ -296,7 +313,7 @@ describe('My Login application', () => {
         })
     })
 
-        describe.skip('closeWindow', () => {
+    describe.skip('closeWindow', () => {
         it('should take screenshot of element after scrolling into view', async () => {
             await browser.url('https://the-internet.herokuapp.com/login')
             await browser.url('https://the-internet.herokuapp.com/login')
@@ -306,5 +323,115 @@ describe('My Login application', () => {
             console.log('Handles after closeWindow:', handles);
         })
     })
-    
+
+    describe('getElementShadowRoot', () => {
+        it('should check type of getElementShadowRoot output', async () => {
+            // Navigate to a page with shadow DOM
+            await browser.url('https://the-internet.herokuapp.com/shadowdom')
+            
+            // Find an element that has a shadow root
+            const hostElement = await $('my-paragraph')
+            await expect(hostElement).toBeDisplayed()
+            
+            // Get the shadow root using getElementShadowRoot
+            const shadowRoot = await browser.getElementShadowRoot(await hostElement.elementId)
+            console.log('Shadow root value:', shadowRoot)            
+            console.log('Shadow root type:', typeof shadowRoot)
+            console.log('Shadow root value:', shadowRoot)
+            
+            // Check the type of the output
+            expect(shadowRoot).toBeDefined()
+            expect(typeof shadowRoot).toBe('string')
+            
+            // The shadow root should be a string identifier (element reference)
+            // In WebDriver protocol, this is typically returned as a shadow root reference
+            console.log('Shadow root reference:', shadowRoot)
+        })
+    })
+
+    describe('getActiveElement', () => {
+        it('should check type of getActiveElement output', async () => {
+            // Navigate to a page with form elements
+            await browser.url('https://the-internet.herokuapp.com/login')
+            
+            // Click on username field to give it focus
+            const usernameField = await $('#username')
+            await usernameField.click()
+            
+            // Get the active element using getActiveElement
+            const activeElement = await browser.getActiveElement()
+            console.log('Active element value:', activeElement)
+            console.log('Active element type:', typeof activeElement)
+            
+            // Check the type of the output
+            expect(activeElement).toBeDefined()
+            expect(typeof activeElement).toBe('string')
+            
+            // The active element should be a string identifier (element reference)
+            // In WebDriver protocol, this is returned as an element reference
+            console.log('Active element reference:', activeElement)
+            
+            // Verify it's the username field by getting its element ID and comparing
+            const usernameElementId = await usernameField.elementId
+            console.log('Username element ID:', usernameElementId)
+            
+            // The active element should match the username field element ID
+            expect(activeElement).toBe(usernameElementId)
+        })
+    })
+
+    describe('mockSensor', () => {
+        it('should create and update mock sensor using POST /session/:sessionId/sensor', async () => {
+            await browser.url('https://the-internet.herokuapp.com/login')
+            
+            // Create a mock ambient light sensor
+            // This makes a POST request to /session/:sessionId/sensor
+            await browser.createMockSensor(
+                'ambient-light',  // type
+                60,               // maxSamplingFrequency (Hz)
+                10                // minSamplingFrequency (Hz)
+            )
+            
+            console.log('Mock sensor created successfully')
+            
+            // Update the mock sensor reading
+            // This makes a POST request to /session/:sessionId/sensor/:type
+            await browser.updateMockSensor(
+                'ambient-light',  // type
+                'ambient-light',  // mockSensorType
+                50,               // maxSamplingFrequency
+                5,                // minSamplingFrequency
+            )
+            
+            console.log('Mock sensor updated successfully')
+            
+            // Get mock sensor information
+            // This makes a GET request to /session/:sessionId/sensor/:type
+            const sensorReading = await browser.getMockSensor('ambient-light')
+            
+            console.log('Mock sensor reading:', sensorReading)
+            expect(sensorReading).toBeDefined()
+            expect(typeof sensorReading).toBe('object')
+            
+            // Delete the mock sensor
+            // This makes a DELETE request to /session/:sessionId/sensor/:type
+            await browser.deleteMockSensor('ambient-light')
+            
+            console.log('Mock sensor deleted successfully')
+        })
+    })
+
+    describe("toBeElementsArrayOfSize", () => {
+        it.only("should work 1", async () => {
+            await browser.url("https://webdriver.io/");
+            // throws TypeError: Cannot read properties of undefined (reading 'options')
+            await expect($$("a.button")).toBeElementsArrayOfSize({gte: 1000}, {wait:0});
+        });
+
+        it("should work 2", async () => {
+            await browser.url("https://webdriver.io/");
+            // works fine
+            await expect($$("a.button")).toBeElementsArrayOfSize({gte: 4});
+        });        
+    });    
 })
