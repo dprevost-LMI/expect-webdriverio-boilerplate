@@ -23,7 +23,7 @@
     "@wdio/mocha-framework": "^9.23.2",
     "@wdio/spec-reporter": "^9.23.2",
     "eslint": "^9.39.2",
-    "eslint-plugin-wdio": "^9.23.0",
+    "eslint-plugin-wdio": "file:.yalc/eslint-plugin-wdio",
     "expect-webdriverio": "5.6.4",
     "globals": "^17.2.0",
     "ts-node": "^10.9.2",

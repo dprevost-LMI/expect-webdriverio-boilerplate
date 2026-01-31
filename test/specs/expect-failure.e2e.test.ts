@@ -5,14 +5,14 @@ import { browser, $, $$, expect } from '@wdio/globals'
  */
 describe('Expect Failure Demonstration', () => {
     beforeEach(async () => {
-        await browser.url('https://the-internet.herokuapp.com/login')
+        browser.url('https://the-internet.herokuapp.com/login')
     })
 
     describe('Multiple elements $$()', () => {
         // Actual text on page is likely: ['Username', 'Password']
 
         it.only('0. should fail when the text for the first element fails', async () => {
-            await expect(await $$('label')).toHaveText('Password', { wait: 0 })
+            expect($$('label')).toHaveText('Password', { wait: 0 })
         })
 
         it('1. should fail when the text for the first element fails', async () => {

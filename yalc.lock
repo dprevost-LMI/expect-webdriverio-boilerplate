@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "packages": {
+    "eslint-plugin-wdio": {
+      "version": "9.23.0",
+      "signature": "7964039ef1222eab1565f7e37983ae22",
+      "file": true,
+      "replaced": "^9.23.0"
+    }
+  }
+}

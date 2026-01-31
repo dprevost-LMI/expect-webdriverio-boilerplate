@@ -4,7 +4,7 @@ import  { expect as expectWDIO } from 'expect-webdriverio'
 
 describe('My Login application', () => {
     it('should demonstrate toBeElementsArrayOfSize', async () => {
-        await browser.url('https://the-internet.herokuapp.com/login')
+        browser.url('https://the-internet.herokuapp.com/login')
         const elems = $$('input')
         await expect(elems).toBeElementsArrayOfSize(2)
     })
@@ -23,7 +23,7 @@ describe('My Login application', () => {
     it('should be displayed', async () => {
         await browser.url('https://the-internet.herokuapp.com/login')
 
-        await expect($('#username')).toBeDisplayed({
+        expect($('#username')).toBeDisplayed({
             message: 'Username input should be displayed on login page',
             wait: 1000
         })
