@@ -19,7 +19,7 @@ describe('My Login application', () => {
     })
 
     it('should be displayed', async () => {
-        await browser.url('https://the-internet.herokuapp.com/login')
+        browser.url('https://the-internet.herokuapp.com/login')
 
         expect($('#username')).toBeDisplayed({
             message: 'Username input should be displayed on login page',
